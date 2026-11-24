@@ -1,0 +1,11 @@
+project: savantenvs/eudev
+target: fuzz_monitor_receive
+
+cmds:
+  - cmd: /mayhem/mayhem/bin/fuzz_monitor_receive
+    libfuzzer: true
+    timeout: 5
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_monitor_receive/testsuite

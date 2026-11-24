@@ -1,0 +1,14 @@
+project: savantenvs/eudev
+target: scsi_id_config
+
+# scsi_id reads its config file (scsi_id.config: OPTIONS= lines and vendor/model rules whose options are
+# re-parsed as arguments) before it opens a device. libFuzzer harness that runs the tool's own main() as
+# `scsi_id --config=<input> --whitelisted` (mayhem/fuzz_scsi_id_config.c), ASan+UBSan.
+cmds:
+  - cmd: /mayhem/mayhem/bin/fuzz_scsi_id_config
+    libfuzzer: true
+    timeout: 5
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/scsi_id_config/testsuite

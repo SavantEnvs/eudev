@@ -1,0 +1,11 @@
+project: savantenvs/eudev
+target: fuzz_rules_verify
+
+cmds:
+  - cmd: /mayhem/mayhem/bin/fuzz_rules_verify
+    libfuzzer: true
+    timeout: 5
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_rules_verify/testsuite
